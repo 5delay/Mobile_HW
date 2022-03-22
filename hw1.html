@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <script>
+        function quest0() {
+            var input = parseInt(prompt('초 단위 시간을 입력하세요'));
+            
+            var sec = input%60;
+            var min = (input-sec)/60;
+
+        
+
+            console.log('%d분 %d초 입니다.', min, sec);
+        }
+
+        function quest1() {
+            
+            var x1 = prompt('첫 번째 점의 x좌표를 입력하세요');
+            var y1 = prompt('첫 번째 점의 y좌표를 입력하세요');
+            var x2 = prompt('두 번째 점의 x좌표를 입력하세요');
+            var y2 = prompt('두 번째 점의 y좌표를 입력하세요');
+
+            console.log('Getting distance using getDist() func');       
+
+            var p1 = [x1, y1];
+            var p2 = [x2, y2];
+
+            let distance = getDist(p1, p2); // 반드시 이 코드를 이용하세요
+            console.log(distance);
+
+        }
+
+        function getDist(p1, p2) { // 입력 인자 설정 필요
+            var dist = Math.sqrt((p1[0]-p2[0])**2+(p1[1]-p2[1])**2);
+
+            return dist;
+        }
+
+        function quest2(str) {  
+            var upper = str.toUpperCase();
+            console.log(upper);
+        }
+
+
+
+        function quest3() {
+
+            var num1 = parseInt(prompt('첫 번째 숫자를 입력하세요'));
+            var oper = prompt('연산자를 입력하세요');
+            var num2 = parseInt(prompt('두 번째 숫자를 입력하세요'));
+
+            var answer = operate(num1, oper, num2); // 반드시 이 코드를 사용하세요
+            console.log("정답은 %d입니다.", answer);
+        }
+
+        function operate(num1, oper, num2) { // 반드시 이 함수를 이용하여 연산 결과를 계산하세요
+            // 단, 반드시 switch 문을 활용하세요
+            var ans;
+
+            switch(oper){
+                case '+':
+                    ans = num1 + num2;
+                    break;
+                case '-':
+                    ans = num1 - num2;
+                    break;
+                case '*':
+                    ans = num1 * num2;
+                    break;
+                case '/':
+                    ans = num1/num2;
+                    ans=parseInt(ans);
+                    break;
+                case '%':
+                    ans=num1%num2;
+                    break;
+            }
+
+            return ans;
+        }
+
+
+        function quest4() {
+
+             var list = ['가위', '바위', '보'];
+
+             const com_num = Math.floor(Math.random() * 3); //0~2 사이의 정수
+             
+             var user = prompt('가위 바위 보!');
+             var user_num = list.indexOf(user);
+
+             console.log("컴퓨터: %s", list[com_num]);
+             var ans='';
+
+             if (com_num==user_num) ans = "비겼습니다.";
+             else if (com_num==0&&user_num==1 || com_num==1&&user_num==2 || com_num==2&&user_num==0) ans = "사용자가 이겼습니다.";
+             else ans = "컴퓨터가 이겼습니다."
+
+             console.log(ans);
+
+        }
+
+
+        function quest5() {
+            str = prompt('문자열을 입력하세요') // 반드시 이 코드를 사용하세요
+            console.log(myReverse(str));
+        }
+
+        function myReverse(str) {
+            
+            // 여기에 스크립트를 작성하세요
+            // 반드시 반복문을 이용하여 str의 내용을 뒤집으세요
+            var ans='';
+            for (let i=str.length-1; i>=0; i--){
+                ans = ans + str[i];
+            }
+            return ans;
+
+        }
+
+
+
+        function quest6() {
+            let input = prompt('숫자를 입력하세요 : ');
+            var num = parseInt(input);
+
+            if (num%2==0) quest6();
+            else if (num%2==1){
+                console.log("%d를 입력하셨네요.", num);
+                quest6();
+            }
+            else {
+                console.log("끝!");
+                return ;
+            }
+        }
+
+
+        function quest7(){
+            const input = prompt("문자열을 입력해주세요.");
+            const word_arr = input.split(" ");
+
+            var ans='';
+
+            for (let i = 0; i< word_arr.length; i++){
+                
+                let char = word_arr[i][0];
+                if (char==char.toUpperCase()) ans+=char;
+                
+            }
+
+            console.log(ans);
+        }
+
+        let testStr = 'My name is mymy. Your name is youryour. His name is hishis. Her name is herher. So, my, your, his, her, name will be mymyyouryourhishisherehr.';
+        // 위 변수를 이용하여 quest8()함수를 실행하세요
+
+        function quest8(str){ 
+            str=str.replace(/[.,!?]/g,"");           
+            const list = str.split(" ");
+            let sort_list = list.sort(); //정렬
+
+
+            const sort_set = new Set(sort_list); //중복 제거
+            const sort_arr = Array.from(sort_set);
+            console.log(sort_arr);
+
+            for (let i=0; i<sort_arr.length; i++){
+                console.log(sort_arr[i]);
+            }
+                
+        }
+
+
+
+
+
+        let longStr = "Computer engineering has been rapidly changed than any other academic disciplines; these changes are immediately reflected in the industrial field.";
+        // 위 변수를 이용하여 quest9()함수를 실행하세요
+
+        function quest9(str){
+            const char_list = str.split("");
+            const char_set = new Set(char_list);
+            const char_arr = Array.from(char_set);
+
+            var result =[];
+
+            for (let i=0; i<char_arr.length; i++){
+                var count = str.split(char_arr[i]).length-1;
+
+                var ans = new Object();
+                ans.char = char_arr[i];
+                ans.count = count;
+
+                result.push(ans);
+            }
+            
+            for (let i=0; i<result.length; i++){
+                console.log(result[i].char+": "+result[i].count);
+            }
+                        
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
